@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { RouterLink } from 'vue-router'
 import type { TLinkBase } from '@/types'
 
@@ -9,27 +9,44 @@ interface INavLink {
 }
 
 const LINKS: INavLink[] = [
-  { to: { name: 'home' }, text: 'Inicio' },
-  { to: { name: 'home' }, text: 'Servicios' },
-  { to: { name: 'home' }, text: 'Cursos' },
-  { to: { name: 'home' }, text: 'Sobre Nosotros' }
+  { to: '/#start', text: 'Inicio' },
+  { to: '/#features', text: 'Servicios' },
+  { to: '/#courses', text: 'Cursos' },
+  { to: '/#about-us', text: 'Sobre Nosotros' }
 ]
 
 const navStatus = ref(false)
+const navbar = ref<HTMLElement>(null)
 const navClass = computed(() => (navStatus.value ? '' : 'hidden'))
 const btnToggleClass = computed(() => (navStatus.value ? 'navbarTogglerActive' : ''))
 
 const toggleNav = () => {
   navStatus.value = !navStatus.value
 }
+
+const toggleNavbarFixedStatus = () => {
+  if (window.pageYOffset > navbar.value.offsetHeight) {
+    navbar.value?.classList.add('shadow-lg')
+  } else {
+    navbar.value?.classList.remove('shadow-lg')
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', toggleNavbarFixedStatus)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', toggleNavbarFixedStatus)
+})
 </script>
 <template>
   <!-- ====== Navbar Section Start -->
-  <div class="absolute top-0 left-0 z-40 flex w-full items-center">
+  <div ref="navbar" class="sticky top-0 left-0 z-40 flex w-full items-center bg-white">
     <div class="container mx-auto">
-      <div class="relative -mx-4 flex items-center justify-between">
-        <div class="w-60 max-w-full px-8">
-          <RouterLink :to="{ name: 'home' }" class="block w-40 py-5 lg:w-48">
+      <div class="relative flex items-center justify-between">
+        <div class="w-60 max-w-full px-5">
+          <RouterLink :to="{ name: 'home' }" class="block w-40 py-3 lg:w-48">
             <img src="@/assets/images/univa-logo.png" alt="logo" class="w-full"
           /></RouterLink>
         </div>
@@ -67,10 +84,7 @@ const toggleNav = () => {
             </nav>
           </div>
           <div class="hidden justify-end pr-16 sm:flex lg:pr-0">
-            <RouterLink
-              :to="{ name: 'home' }"
-              class="py-3 px-7 font-medium text-slate-800 hover:opacity-80"
-            >
+            <RouterLink to="/login" class="py-3 px-7 font-medium text-slate-800 hover:opacity-80">
               Entrar
             </RouterLink>
             <RouterLink
