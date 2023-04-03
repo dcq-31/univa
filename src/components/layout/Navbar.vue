@@ -9,7 +9,7 @@ interface INavLink {
 }
 
 const LINKS: INavLink[] = [
-  { to: '/#start', text: 'Inicio' },
+  { to: '/#hero', text: 'Inicio' },
   { to: '/#features', text: 'Servicios' },
   { to: '/#courses', text: 'Cursos' },
   { to: '/#about-us', text: 'Sobre Nosotros' }
