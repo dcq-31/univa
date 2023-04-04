@@ -14,4 +14,5 @@ export interface ICourseVideo {
   author: string
   title: string
   description: string
+  id: number
 }

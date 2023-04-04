@@ -1,44 +1,20 @@
 <script lang="ts" setup>
 import { RouterLink } from 'vue-router'
-import type { ICourseVideo } from '@/types'
 import FeatureWidget from '@/components/widget/FeatureWidget.vue'
 import { BuildingOfficeIcon } from '@heroicons/vue/24/outline'
 import { GiftIcon } from '@heroicons/vue/24/outline'
 import { CodeBracketIcon } from '@heroicons/vue/24/outline'
 import { RocketLaunchIcon } from '@heroicons/vue/24/outline'
 
-const COURSES_VIDEO: ICourseVideo[] = [
-  {
-    author: 'Jhon Wakerly',
-    date: ' Dec 22, 2023',
-    title: 'Meet AutoManage, the best AI management tools',
-    description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
-  },
-  {
-    author: 'Sam Smith',
-    date: ' Feb 8, 2023',
-    title: 'Competitive Programming - Binary Search',
-    description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
-  },
-  {
-    author: 'Helen Key',
-    date: ' Dec 22, 2023',
-    title: 'Meet AutoManage, the best AI management tools',
-    description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
-  },
-  {
-    author: 'Charly Sears',
-    date: ' May 30, 2023',
-    title: 'New mathematical methods',
-    description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
-  }
-]
+import { useCoursesStore } from '@/stores/courses'
+
+const { courses } = useCoursesStore()
 </script>
 
 <template>
-  <main id="home">
+  <main id="home-view">
     <!-- ====== Hero Section Start -->
-    <div id="hero" class="relative overflow-hidden bg-white pt-[70px] md:pt-[90px] lg:pt-[110px]">
+    <div id="hero" class="relative overflow-hidden bg-white pt-[40px] md:pt-[50px] lg:pt-[60px]">
       <div class="container mx-auto">
         <div class="mx-2">
           <div class="w-full px-4">
@@ -62,23 +38,14 @@ const COURSES_VIDEO: ICourseVideo[] = [
                   Multidisciplinary Web Template Built with Your Favourite Technology - HTML
                   Bootstrap, Tailwind and React NextJS.
                 </p>
-                <ul
-                  class="mb-10 space-y-8 md:flex md:flex-wrap md:items-center md:justify-center md:space-y-0 md:space-x-5"
-                >
-                  <li>
-                    <RouterLink
-                      :to="{ name: 'home' }"
-                      class="rounded-lg bg-white py-4 px-6 text-center font-medium text-neutral-800 ring-2 ring-neutral-800 hover:shadow-xl sm:px-10"
-                    >
-                      Download Now
-                    </RouterLink>
-                  </li>
+                <ul class="mb-10 md:flex md:flex-wrap md:items-center md:justify-center">
+                  <li></li>
                   <li>
                     <RouterLink
                       :to="{ name: 'home' }"
                       class="rounded-lg bg-secondary-600 py-4 px-6 font-medium text-white hover:shadow-xl sm:px-10"
                     >
-                      Star on Github
+                      Explore Courses
                     </RouterLink>
                   </li>
                 </ul>
@@ -153,15 +120,15 @@ const COURSES_VIDEO: ICourseVideo[] = [
         </div>
         <div class="-mx-4 flex flex-wrap">
           <div
-            v-for="(courseVideo, index) in COURSES_VIDEO"
+            v-for="(course, index) in courses"
             :key="`home-courses-video-${index}`"
             class="w-full px-4 md:w-1/2 lg:w-1/3"
           >
             <div class="group mb-10">
               <div class="mb-8 overflow-hidden rounded">
-                <RouterLink :to="`/courses-video-details/${index}`" class="block">
+                <RouterLink :to="`/courses-video-details/${course.id.toString()}`" class="block">
                   <img
-                    :src="`/courses/front-${index}.jpg`"
+                    :src="`/courses/front-${course.id}.jpg`"
                     class="w-full transition group-hover:scale-125"
                   />
                 </RouterLink>
@@ -171,10 +138,10 @@ const COURSES_VIDEO: ICourseVideo[] = [
                   <span
                     class="inline-block rounded bg-secondary py-1 px-4 text-center text-xs font-semibold leading-loose text-white"
                   >
-                    {{ courseVideo.date }}
+                    {{ course.date }}
                   </span>
                   <div class="font-semibold">
-                    {{ courseVideo.author }}
+                    {{ course.author }}
                   </div>
                 </div>
                 <h3>
@@ -182,11 +149,11 @@ const COURSES_VIDEO: ICourseVideo[] = [
                     :to="`/courses-video-details/${index}`"
                     class="text-dark mb-4 inline-block text-xl font-semibold hover:text-neutral-800 sm:text-2xl lg:text-xl xl:text-2xl"
                   >
-                    {{ courseVideo.title }}
+                    {{ course.title }}
                   </RouterLink>
                 </h3>
                 <p class="text-body-color text-base">
-                  {{ courseVideo.description }}
+                  {{ course.description }}
                 </p>
               </div>
             </div>
