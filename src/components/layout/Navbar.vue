@@ -2,6 +2,8 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { RouterLink } from 'vue-router'
 import type { TLinkBase } from '@/types'
+import { useUserStore } from '@/stores/user'
+import { UserCircleIcon } from '@heroicons/vue/24/outline'
 
 interface INavLink {
   to: TLinkBase
@@ -14,6 +16,8 @@ const LINKS: INavLink[] = [
   { to: '/#courses', text: 'Cursos' },
   { to: '/#about-us', text: 'Sobre Nosotros' }
 ]
+
+const { isLogin } = useUserStore()
 
 const navStatus = ref(false)
 const navbar = ref<HTMLElement>(null)
@@ -83,16 +87,27 @@ onUnmounted(() => {
               </ul>
             </nav>
           </div>
-          <div class="hidden justify-end pr-16 sm:flex lg:pr-0">
-            <RouterLink to="/login" class="py-3 px-7 font-medium text-slate-800 hover:opacity-80">
-              Entrar
-            </RouterLink>
-            <RouterLink
-              :to="{ name: 'home' }"
-              class="duration-400 rounded-lg bg-primary py-3 px-6 text-base font-medium text-white transition-colors hover:bg-primary-500"
-            >
-              Registrar
-            </RouterLink>
+          <div class="hidden justify-end space-x-4 pr-16 sm:flex lg:pr-0">
+            <template v-if="!isLogin">
+              <RouterLink to="/login" class="py-3 px-7 font-medium text-slate-800 hover:opacity-80">
+                Entrar
+              </RouterLink>
+              <RouterLink
+                to=""
+                class="duration-400 rounded-lg bg-primary py-3 px-6 text-base font-medium text-white transition-colors hover:bg-primary-500"
+              >
+                Registrar
+              </RouterLink>
+            </template>
+            <template v-else>
+              <UserCircleIcon class="w-10 cursor-pointer text-neutral-800" />
+              <RouterLink
+                to="/courses"
+                class="duration-400 rounded-lg bg-secondary py-3 px-6 text-base font-medium text-white transition-colors hover:bg-secondary-600"
+              >
+                Mis Cursos
+              </RouterLink>
+            </template>
           </div>
         </div>
       </div>
