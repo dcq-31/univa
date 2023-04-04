@@ -5,7 +5,6 @@ import { BuildingOfficeIcon } from '@heroicons/vue/24/outline'
 import { GiftIcon } from '@heroicons/vue/24/outline'
 import { CodeBracketIcon } from '@heroicons/vue/24/outline'
 import { RocketLaunchIcon } from '@heroicons/vue/24/outline'
-
 import { useCoursesStore } from '@/stores/courses'
 
 const { courses } = useCoursesStore()
