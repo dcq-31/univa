@@ -10,9 +10,9 @@ export interface IIcon {
 }
 
 export interface ICourseVideo {
-  date: string
-  author: string
+  id: number
   title: string
   description: string
-  id: number
+  author: string
+  date: string
 }

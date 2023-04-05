@@ -1,13 +1,14 @@
 <script lang="ts" setup>
 import { RouterLink } from 'vue-router'
-import FeatureWidget from '@/components/widget/FeatureWidget.vue'
+// Heroicons used
 import { BuildingOfficeIcon } from '@heroicons/vue/24/outline'
 import { GiftIcon } from '@heroicons/vue/24/outline'
 import { CodeBracketIcon } from '@heroicons/vue/24/outline'
 import { RocketLaunchIcon } from '@heroicons/vue/24/outline'
 import { useCoursesStore } from '@/stores/courses'
+import FeatureWidget from '@/components/widget/FeatureWidget.vue'
 
-const { courses } = useCoursesStore()
+const { coursesVideo } = useCoursesStore()
 </script>
 
 <template>
@@ -29,7 +30,7 @@ const { courses } = useCoursesStore()
                 <h1
                   class="mb-8 text-3xl font-bold leading-snug text-neutral-800 sm:text-4xl sm:leading-snug md:text-[45px] md:leading-snug"
                 >
-                  Open-Source Web Template for SaaS, Startup, Apps, and More
+                  Plataforma UNIVA, aprende con nosotros!!
                 </h1>
                 <p
                   class="mx-auto mb-10 max-w-[600px] text-base text-neutral-800 sm:text-lg sm:leading-relaxed md:text-xl md:leading-relaxed"
@@ -119,15 +120,15 @@ const { courses } = useCoursesStore()
         </div>
         <div class="-mx-4 flex flex-wrap">
           <div
-            v-for="(course, index) in courses"
+            v-for="(courseVideo, index) in coursesVideo"
             :key="`home-courses-video-${index}`"
             class="w-full px-4 md:w-1/2 lg:w-1/3"
           >
             <div class="group mb-10">
               <div class="mb-8 overflow-hidden rounded">
-                <RouterLink :to="`/courses-video-details/${course.id.toString()}`" class="block">
+                <RouterLink :to="`/courses/${courseVideo.id.toString()}`" class="block">
                   <img
-                    :src="`/courses/front-${course.id}.jpg`"
+                    :src="`/courses/front-${courseVideo.id}.jpg`"
                     class="w-full transition group-hover:scale-125"
                   />
                 </RouterLink>
@@ -137,10 +138,10 @@ const { courses } = useCoursesStore()
                   <span
                     class="inline-block rounded bg-secondary py-1 px-4 text-center text-xs font-semibold leading-loose text-white"
                   >
-                    {{ course.date }}
+                    {{ courseVideo.date }}
                   </span>
                   <div class="font-semibold">
-                    {{ course.author }}
+                    {{ courseVideo.author }}
                   </div>
                 </div>
                 <h3>
@@ -148,11 +149,11 @@ const { courses } = useCoursesStore()
                     :to="`/courses-video-details/${index}`"
                     class="text-dark mb-4 inline-block text-xl font-semibold hover:text-neutral-800 sm:text-2xl lg:text-xl xl:text-2xl"
                   >
-                    {{ course.title }}
+                    {{ courseVideo.title }}
                   </RouterLink>
                 </h3>
                 <p class="text-body-color text-base">
-                  {{ course.description }}
+                  {{ courseVideo.description }}
                 </p>
               </div>
             </div>
