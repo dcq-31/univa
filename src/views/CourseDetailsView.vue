@@ -3,47 +3,45 @@ import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useCoursesStore } from '@/stores/courses'
 import type { ICourseVideo } from '@/types'
+import { ROUTE_NAME } from '@/router/names'
 const { params } = useRoute()
-const { courses } = useCoursesStore()
+const { coursesVideo } = useCoursesStore()
 
 const course = computed<ICourseVideo>(() => {
   let idx = 0
-  courses.forEach((item, index) => {
+  coursesVideo.forEach((item, index) => {
     if (item.id.toString() == params.id) {
       idx = index
     }
   })
-  return courses[idx]
+  return coursesVideo[idx]
 })
 </script>
 <template>
   <main id="course-details-view">
     <section class="pt-20 pb-10 lg:pt-[60px] lg:pb-20">
       <div class="container mx-auto">
-        <div class="-mx-4 mb-10 flex flex-wrap justify-center">
-          <div class="w-full space-x-3 px-4 lg:flex lg:items-center">
-            <div class="max-w-lg lg:max-w-3xl">
+        <div class="md: -mx-4 mb-10 flex flex-wrap justify-center">
+          <div class="w-full px-4 md:space-x-3 lg:flex lg:items-center">
+            <div class="mb-5 md:mb-0 md:max-w-lg lg:max-w-3xl">
               <video autoplay controls>
                 <source :src="`/public/courses/videos/${params.id}.mp4`" type="video/mp4" />
               </video>
             </div>
-            <div class="w-full px-2 lg:w-4/12">
+            <div class="mx-auto max-w-md px-2 md:mx-0 lg:w-4/12 lg:max-w-none">
               <div>
                 <div
                   class="relative mb-12 overflow-hidden rounded bg-primary py-[60px] px-11 text-center lg:px-8"
                 >
-                  <h3 class="mb-2 text-2xl font-semibold text-white">Explore another courses</h3>
+                  <h3 class="mb-2 text-2xl font-semibold text-white">Explorar otros cursos</h3>
                   <p class="mb-8 text-base text-white">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rem tempore, voluptas
-                    blanditiis magnam dicta, reprehenderit aut beatae accusantium consectetur et
-                    adipisci. Voluptate hic facere quidem similique tempora architecto voluptates
-                    magnam?
+                    Tenemos otros cursos de diferentes temas que te pueden interesar.
                   </p>
                   <RouterLink
-                    :to="{ name: 'home' }"
-                    class="rounded-lg bg-white py-4 px-6 font-medium hover:shadow-xl sm:px-10"
+                    :to="{ name: ROUTE_NAME.HOME }"
+                    class="rounded-lg bg-white py-3 px-6 font-medium text-dark transition-colors hover:shadow-lg"
                   >
-                    Click Here!
+                    Ver Cursos
                   </RouterLink>
                 </div>
               </div>
@@ -64,7 +62,7 @@ const course = computed<ICourseVideo>(() => {
           </div>
           <div>
             <h2
-              class="text-dark mb-6 text-[26px] font-bold leading-snug sm:text-3xl sm:leading-snug md:text-4xl md:leading-snug"
+              class="mb-6 text-[26px] font-bold leading-snug text-dark sm:text-3xl sm:leading-snug md:text-4xl md:leading-snug"
             >
               {{ course.title }}
             </h2>

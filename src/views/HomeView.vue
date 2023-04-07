@@ -1,12 +1,13 @@
 <script lang="ts" setup>
 import { RouterLink } from 'vue-router'
-// Heroicons used
-import { BuildingOfficeIcon } from '@heroicons/vue/24/outline'
-import { GiftIcon } from '@heroicons/vue/24/outline'
-import { CodeBracketIcon } from '@heroicons/vue/24/outline'
+// Heroicons
+import { UserGroupIcon } from '@heroicons/vue/24/outline'
+import { Squares2X2Icon } from '@heroicons/vue/24/outline'
+import { DocumentTextIcon } from '@heroicons/vue/24/outline'
 import { RocketLaunchIcon } from '@heroicons/vue/24/outline'
 import { useCoursesStore } from '@/stores/courses'
 import FeatureWidget from '@/components/widget/FeatureWidget.vue'
+import { ROUTE_NAME } from '@/router/names'
 
 const { coursesVideo } = useCoursesStore()
 </script>
@@ -30,22 +31,22 @@ const { coursesVideo } = useCoursesStore()
                 <h1
                   class="mb-8 text-3xl font-bold leading-snug text-neutral-800 sm:text-4xl sm:leading-snug md:text-[45px] md:leading-snug"
                 >
-                  Plataforma UNIVA, aprende con nosotros!!
+                  Una nueva forma de aprender!
                 </h1>
                 <p
-                  class="mx-auto mb-10 max-w-[600px] text-base text-neutral-800 sm:text-lg sm:leading-relaxed md:text-xl md:leading-relaxed"
+                  class="mx-auto mb-10 max-w-[600px] text-neutral-800 sm:text-lg sm:leading-relaxed md:text-xl md:leading-relaxed"
                 >
-                  Multidisciplinary Web Template Built with Your Favourite Technology - HTML
-                  Bootstrap, Tailwind and React NextJS.
+                  Accede a cursos en línea , aprende nuevas habilidades a tu propio ritmo desde
+                  cualquier lugar. ¡Empieza hoy mismo!
                 </p>
                 <ul class="mb-10 md:flex md:flex-wrap md:items-center md:justify-center">
                   <li></li>
                   <li>
                     <RouterLink
-                      :to="{ name: 'home' }"
-                      class="rounded-lg bg-secondary-600 py-4 px-6 font-medium text-white hover:shadow-xl sm:px-10"
+                      :to="{ name: ROUTE_NAME.COURSES }"
+                      class="rounded-lg bg-secondary-600 py-4 px-6 font-medium text-white transition-colors hover:shadow-xl sm:px-10"
                     >
-                      Explore Courses
+                      Explorar Cursos
                     </RouterLink>
                   </li>
                 </ul>
@@ -62,39 +63,39 @@ const { coursesVideo } = useCoursesStore()
       <div class="container mx-auto px-4">
         <div class="-mx-4 flex flex-wrap">
           <div class="w-full px-4">
-            <div class="mb-12 max-w-[620px] text-neutral-800 lg:mb-20">
-              <h2 class="mb-4 text-3xl font-bold sm:text-4xl md:text-[42px]">
-                Main Features Of Play
+            <div class="mb-12 max-w-[750px] text-neutral-800 lg:mb-20">
+              <h2 class="mb-4 text-3xl font-bold sm:text-4xl sm:leading-normal md:text-[42px]">
+                Funcionalidades de Univa
               </h2>
               <p class="text-lg leading-relaxed sm:text-xl sm:leading-relaxed">
-                There are many variations of passages of Lorem Ipsum available but the majority have
-                suffered alteration in some form.
+                Descubre las características clave que hacen a nuestra plataforma efectiva y
+                flexible para el aprendizaje en línea.
               </p>
             </div>
           </div>
           <FeatureWidget
-            title="Free and Open-Source"
-            description="Lorem Ipsum is simply dummy text of the printing and industry."
+            title="Accesibilidad"
+            description="Fácil acceso a los cursos desde cualquier lugar y en cualquier momento"
+          >
+            <UserGroupIcon class="w-12 text-lg text-white" />
+          </FeatureWidget>
+          <FeatureWidget
+            title="Variedad de Cursos"
+            description="Aprende habilidades en diferentes materias y técnicas para resolver problemas."
+          >
+            <Squares2X2Icon class="w-12 text-lg text-white" />
+          </FeatureWidget>
+          <FeatureWidget
+            title="Certificados"
+            description="Validar los conocimientos y cursos completados de los usuarios ante posibles empleos."
+          >
+            <DocumentTextIcon class="w-12 text-lg text-white" />
+          </FeatureWidget>
+          <FeatureWidget
+            title="Expertos"
+            description="Instructores disponibles para responder preguntas y brindar apoyo a todos los usuarios."
           >
             <RocketLaunchIcon class="w-12 text-lg text-white" />
-          </FeatureWidget>
-          <FeatureWidget
-            title="Free and Open-Source"
-            description="Lorem Ipsum is simply dummy text of the printing and industry."
-          >
-            <BuildingOfficeIcon class="w-12 text-lg text-white" />
-          </FeatureWidget>
-          <FeatureWidget
-            title="Free and Open-Source"
-            description="Lorem Ipsum is simply dummy text of the printing and industry."
-          >
-            <GiftIcon class="w-12 text-lg text-white" />
-          </FeatureWidget>
-          <FeatureWidget
-            title="Free and Open-Source"
-            description="Lorem Ipsum is simply dummy text of the printing and industry."
-          >
-            <CodeBracketIcon class="w-12 text-lg text-white" />
           </FeatureWidget>
         </div>
         <div class="-mx-4 flex flex-wrap"></div>
@@ -108,17 +109,17 @@ const { coursesVideo } = useCoursesStore()
         <div class="-mx-4 flex flex-wrap">
           <div class="w-full px-4">
             <div class="mx-auto mb-[60px] max-w-[620px] text-center lg:mb-20">
-              <h2 class="text-dark mb-4 text-3xl font-bold sm:text-4xl md:text-[40px]">
-                Our Courses
+              <h2 class="mb-4 text-3xl font-bold text-dark sm:text-4xl md:text-[40px]">
+                Nuestros Cursos
               </h2>
               <p class="text-body-color text-lg leading-relaxed sm:text-xl sm:leading-relaxed">
-                There are many variations of passages of Lorem Ipsum available but the majority have
-                suffered alteration in some form.
+                Explora la amplia variedad de cursos que te ofrecemos y descubre cómo puedes
+                expandir tus conocimientos.
               </p>
             </div>
           </div>
         </div>
-        <div class="-mx-4 flex flex-wrap">
+        <div class="space-x-2 md:-mx-4 md:flex md:flex-wrap md:space-x-0">
           <div
             v-for="(courseVideo, index) in coursesVideo"
             :key="`home-courses-video-${index}`"
@@ -146,13 +147,13 @@ const { coursesVideo } = useCoursesStore()
                 </div>
                 <h3>
                   <RouterLink
-                    :to="`/courses-video-details/${index}`"
-                    class="text-dark mb-4 inline-block text-xl font-semibold hover:text-neutral-800 sm:text-2xl lg:text-xl xl:text-2xl"
+                    :to="`/courses/${courseVideo.id.toString()}`"
+                    class="mb-4 inline-block text-xl font-semibold text-dark hover:text-neutral-800 sm:text-2xl lg:text-xl xl:text-2xl"
                   >
                     {{ courseVideo.title }}
                   </RouterLink>
                 </h3>
-                <p class="text-body-color text-base">
+                <p class="text-body-color">
                   {{ courseVideo.description }}
                 </p>
               </div>
@@ -168,34 +169,26 @@ const { coursesVideo } = useCoursesStore()
       <div class="container mx-auto">
         <div class="bg-white">
           <div class="-mx-4 flex flex-wrap">
-            <div class="w-full px-4">
+            <div class="w-full">
               <div class="items-center justify-between overflow-hidden border lg:flex">
                 <div
                   class="w-full py-12 px-7 sm:px-12 md:p-16 lg:max-w-[565px] lg:py-9 lg:px-16 xl:max-w-[640px] xl:p-[70px]"
                 >
                   <h2
-                    class="text-dark mb-6 text-3xl font-bold sm:text-4xl sm:leading-snug 2xl:text-[40px]"
+                    class="mb-6 text-3xl font-bold text-dark sm:text-4xl sm:leading-snug 2xl:text-[40px]"
                   >
-                    Brilliant Toolkit to Build Nextgen Website Faster.
+                    ¿Quiénes están detrás?
                   </h2>
-                  <p class="text-body-color mb-9 text-base leading-relaxed">
-                    The main ‘thrust' is to focus on educating attendees on how to best protect
-                    highly vulnerable business applications with interactive panel discussions and
-                    roundtables led by subject matter experts.
+                  <p class="mb-9 text-lg leading-relaxed">
+                    Somos un grupo de estudiantes universitarios con la misión de brindar una
+                    experiencia educativa en línea de alta calidad a cualquier persona. Estamos
+                    comprometidos a proporcionar una educación de calidad y accesible para todos,
+                    sobre todo para aquellos que viven en zonas rurales o en comunidades de bajos
+                    ingresos en Cuba.
                   </p>
-                  <p class="text-body-color mb-9 text-base leading-relaxed">
-                    The main ‘thrust' is to focus on educating attendees on how to best protect
-                    highly vulnerable business applications with interactive panel.
-                  </p>
-                  <a
-                    href="javascript:void(0)"
-                    class="inline-flex items-center justify-center rounded bg-primary py-4 px-6 text-base font-medium text-white transition duration-300 ease-in-out hover:bg-opacity-90 hover:shadow-lg"
-                  >
-                    Learn More
-                  </a>
                 </div>
                 <div class="text-center">
-                  <div class="relative z-10 inline-block">
+                  <div class="relative z-10 inline-block max-w-2xl">
                     <img src="about.jpg" class="mx-auto lg:ml-auto" />
                   </div>
                 </div>
