@@ -2,7 +2,7 @@
  * Components Interfaces
  */
 
-export type TLinkBase = string | { name: string }
+export type TBaseLink = string | { name: string }
 
 export interface IIcon {
   name: string

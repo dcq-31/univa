@@ -9,47 +9,52 @@ export const useCoursesStore = defineStore('courses', () => {
   const coursesVideo = ref<ICourseVideo[]>([
     {
       id: 1,
-      author: 'Jhon Wakerly',
-      date: ' Dec 22, 2023',
-      title: 'Meet AutoManage, the best AI management tools',
-      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+      author: 'Claudia Rivero',
+      date: ' Enero 12, 2023',
+      title: 'Francés para principiantes',
+      description:
+        'Curso de francés que brinda a los estudiantes las habilidades para comprender, hablar, leer y escribir en francés.'
     },
     {
       id: 2,
-      author: 'Sam Smith',
-      date: ' Feb 8, 2023',
-      title: 'Competitive Programming - Binary Search',
-      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+      author: 'Joy Oliver',
+      date: ' Febrero 8, 2023',
+      title: 'Redes Informáticas',
+      description:
+        'Se prentende enseñar como fue desarrollada la internet y las diferentes capas que existen para el intercambio de datos.'
     },
     {
       id: 3,
-      author: 'Sam Smith',
-      date: ' Feb 8, 2023',
-      title: 'Competitive Programming - Binary Search',
-      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+      author: 'Laura Guerra',
+      date: ' Agosto 8, 2023',
+      title: 'El comportamiento humano',
+      description:
+        'Aprenderás a aplicar teorías y métodos de la psicología para comprender el comportamiento de las personas.'
     },
     {
       id: 4,
-      author: 'Helen Key',
-      date: ' Dec 22, 2023',
-      title: 'Meet AutoManage, the best AI management tools',
-      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+      author: 'Helen Ortega',
+      date: ' Noviembre 30, 2022',
+      title: '¿Qué es Python?',
+      description:
+        'Python es un lenguaje de programación con el que se crean aplicaciones y software de  alta calidad.'
+    },
+    {
+      id: 5,
+      author: 'Reina Díaz',
+      date: ' Abril 6, 2023',
+      title: 'Marketing Digital',
+      description:
+        'Conoce las características del marketing digital incluyendo investigación de mercado, segmentación de mercado, etc.'
     }
   ])
   const newCoursesVideo = ref<ICourseVideo[]>([
     {
-      id: 5,
-      author: 'Jhon Wakerly',
-      date: ' Abril 6, 2023',
-      title: 'Meet AutoManage, the best AI management tools',
-      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
-    },
-    {
       id: 6,
-      author: 'Sam Smith',
+      author: 'Ariel',
       date: ' Abril 6, 2023',
-      title: 'Competitive Programming - Binary Search',
-      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+      title: 'Emprendimiento',
+      description: 'Motivación personal'
     }
   ])
 
