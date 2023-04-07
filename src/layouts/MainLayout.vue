@@ -1,13 +1,13 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { RouterView } from 'vue-router'
-import Navbar from '@/components/layout/Navbar.vue'
-import Footer from '@/components/layout/Footer.vue'
+import MainNavbar from '@/components/layout/MainNavbar.vue'
+import MainFooter from '@/components/layout/MainFooter.vue'
 </script>
 
 <template>
   <div>
-    <Navbar></Navbar>
+    <MainNavbar></MainNavbar>
     <RouterView></RouterView>
-    <Footer></Footer>
+    <MainFooter></MainFooter>
   </div>
 </template>

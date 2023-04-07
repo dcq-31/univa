@@ -1,38 +1,39 @@
 <script lang="ts" setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { RouterLink } from 'vue-router'
-import type { TLinkBase } from '@/types'
+import { ROUTE_NAME } from '@/router/names'
+import type { TBaseLink } from '@/types'
 import { useUserStore } from '@/stores/user'
 import { UserCircleIcon } from '@heroicons/vue/24/outline'
 
 interface INavLink {
-  to: TLinkBase
-  text: string
+  to: TBaseLink
+  label: string
 }
 
 const LINKS: INavLink[] = [
-  { to: '/#hero', text: 'Inicio' },
-  { to: '/#features', text: 'Servicios' },
-  { to: '/#courses', text: 'Cursos' },
-  { to: '/#about-us', text: 'Sobre Nosotros' }
+  { to: '/#hero', label: 'Inicio' },
+  { to: '/#features', label: 'Funcionalidades' },
+  { to: '/#courses', label: 'Cursos' },
+  { to: '/#about-us', label: 'Sobre Nosotros' }
 ]
 
 const { isLogin } = useUserStore()
 
-const navStatus = ref(false)
-const navbar = ref<HTMLElement>(null)
-const navClass = computed(() => (navStatus.value ? '' : 'hidden'))
-const btnToggleClass = computed(() => (navStatus.value ? 'navbarTogglerActive' : ''))
+const navbarStatus = ref(false)
+const navbarRef = ref<HTMLElement>(null)
+const navbarClass = computed(() => (navbarStatus.value ? '' : 'hidden'))
+const btnToggleClass = computed(() => (navbarStatus.value ? 'navbarTogglerActive' : ''))
 
-const toggleNav = () => {
-  navStatus.value = !navStatus.value
+const toggleNavbar = () => {
+  navbarStatus.value = !navbarStatus.value
 }
 
 const toggleNavbarFixedStatus = () => {
-  if (window.pageYOffset > navbar.value.offsetHeight) {
-    navbar.value?.classList.add('shadow-lg')
+  if (window.pageYOffset > navbarRef.value.offsetHeight) {
+    navbarRef.value?.classList.add('shadow-lg')
   } else {
-    navbar.value?.classList.remove('shadow-lg')
+    navbarRef.value?.classList.remove('shadow-lg')
   }
 }
 
@@ -45,43 +46,42 @@ onUnmounted(() => {
 })
 </script>
 <template>
-  <!-- ====== Navbar Section Start -->
-  <div ref="navbar" class="sticky top-0 left-0 z-40 flex w-full items-center bg-white">
+  <div ref="navbarRef" class="sticky top-0 left-0 z-40 flex w-full items-center bg-white">
     <div class="container mx-auto">
       <div class="relative flex items-center justify-between">
         <div class="w-60 max-w-full px-5">
-          <RouterLink :to="{ name: 'home' }" class="block w-40 py-3 lg:w-48">
+          <RouterLink :to="{ name: ROUTE_NAME.HOME }" class="block w-40 py-2 lg:w-44">
             <img src="@/assets/images/univa-logo.png" alt="logo" class="w-full"
           /></RouterLink>
         </div>
         <div class="flex w-full items-center justify-between px-4">
           <div>
             <button
-              class="absolute right-4 top-1/2 block -translate-y-1/2 rounded-lg px-3 py-[6px] ring-slate-700 focus:ring-2 lg:hidden"
-              @click="toggleNav"
+              class="absolute right-4 top-1/2 block -translate-y-1/2 rounded-lg px-3 py-[6px] ring-0 lg:hidden"
+              @click="toggleNavbar"
               :class="btnToggleClass"
             >
               <span
                 v-for="index of 3"
                 :key="`toggle-btn-line-${index}`"
-                class="relative my-[6px] block h-[2px] w-[30px] bg-slate-800"
+                class="relative my-[6px] block h-[2px] w-[30px] bg-dark"
               ></span>
             </button>
             <nav
               class="absolute right-4 top-full w-full max-w-[250px] rounded-lg bg-white py-5 shadow-lg lg:static lg:block lg:w-full lg:max-w-full lg:bg-transparent lg:py-0 lg:px-4 lg:shadow-none xl:px-6"
-              :class="navClass"
+              :class="navbarClass"
             >
               <ul class="block lg:flex">
                 <li
                   v-for="(link, index) in LINKS"
-                  :key="`navbar-link-${index}`"
+                  :key="`main-navbar-link-${index}`"
                   class="group relative"
                 >
                   <RouterLink
                     :to="link.to"
-                    class="mx-10 flex py-2 group-hover:text-primary lg:mr-0 lg:inline-flex lg:py-6 lg:px-0 lg:text-slate-800 lg:group-hover:text-slate-700 lg:group-hover:opacity-80"
+                    class="mx-10 flex py-2 text-dark transition-colors group-hover:text-primary lg:mr-0 lg:inline-flex lg:py-4 lg:px-0"
                   >
-                    {{ link.text }}
+                    {{ link.label }}
                   </RouterLink>
                 </li>
               </ul>
@@ -89,12 +89,15 @@ onUnmounted(() => {
           </div>
           <div class="hidden justify-end space-x-4 pr-16 sm:flex lg:pr-0">
             <template v-if="!isLogin">
-              <RouterLink to="/login" class="py-3 px-7 font-medium text-slate-800 hover:opacity-80">
+              <RouterLink
+                :to="{ name: ROUTE_NAME.LOGIN }"
+                class="py-3 px-7 font-medium text-dark transition-colors hover:text-primary"
+              >
                 Entrar
               </RouterLink>
               <RouterLink
-                to=""
-                class="duration-400 rounded-lg bg-primary py-3 px-6 text-base font-medium text-white transition-colors hover:bg-primary-500"
+                :to="{ name: ROUTE_NAME.HOME }"
+                class="rounded-lg bg-primary py-3 px-6 font-medium text-white transition-colors hover:bg-primary-500 hover:shadow-lg"
               >
                 Registrar
               </RouterLink>
@@ -102,8 +105,8 @@ onUnmounted(() => {
             <template v-else>
               <UserCircleIcon class="w-10 cursor-pointer text-neutral-800" />
               <RouterLink
-                to="/courses"
-                class="duration-400 rounded-lg bg-secondary py-3 px-6 text-base font-medium text-white transition-colors hover:bg-secondary-600"
+                :to="{ name: ROUTE_NAME.COURSES }"
+                class="rounded-lg bg-secondary py-3 px-6 font-medium text-white transition-colors hover:bg-secondary-500 hover:shadow-lg"
               >
                 Mis Cursos
               </RouterLink>
@@ -113,7 +116,6 @@ onUnmounted(() => {
       </div>
     </div>
   </div>
-  <!-- ====== Navbar Section End -->
 </template>
 
 <style lang="css" scoped>
